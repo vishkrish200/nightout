@@ -32,7 +32,7 @@ export default function Dashboard() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Button varaint="link" onClick={handleLogout()}>
+        <Button varaint="link" onClick={handleLogout}>
           log out
         </Button>
       </div>
