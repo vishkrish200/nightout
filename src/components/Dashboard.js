@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, Card, Alert } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Button, Card, Alert, Navbar, NavbarBrand, Nav, NavItem } from "react-bootstrap";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext"
+import Events from './Events';
 
 export default function Dashboard() {
   
@@ -23,20 +24,13 @@ export default function Dashboard() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">profile</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <strong>email : </strong>{currentUser.email}
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">update profile</Link>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Button varaint="link" onClick={handleLogout}>
-          log out
-        </Button>
-      </div>
-       
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand>Night Out</Navbar.Brand>
+        <NavItem>email: {currentUser.email}</NavItem>
+        <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+      </Navbar>
+      <Events />
+      
     </>
   );
 }
