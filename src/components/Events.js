@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { db, storage } from "../config/firebase";
+import EventsDetails from "./EventsDetails";
 
 export default function Events() {
   const [events, setEvents] = useState([]);
@@ -15,7 +17,7 @@ export default function Events() {
     const data = await response.get();
     const e = [];
     data.docs.forEach((item) => {
-      e.push(item.data());
+      e.push({ id: item.id, ...item.data() });
     });
     setEvents(e);
   };
@@ -25,14 +27,16 @@ export default function Events() {
       {events &&
         events.map((e) => {
           return (
-            <Card>
-              <div className="event-container">
-                <h3>{e.title}</h3>
-                <p>{e.desc}</p>
-                <p>Price: {e.price}</p>
-              </div>
-              <br />
-            </Card>
+            <Link to={`/events/${e.id}`}>
+              <Card>
+                <div className="event-container">
+                  <h3>{e.title}</h3>
+                  <p>{e.desc}</p>
+                  <p>Price: {e.price}</p>
+                </div>
+                <br />
+              </Card>
+            </Link>
           );
         })}
     </div>
