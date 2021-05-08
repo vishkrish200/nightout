@@ -32,7 +32,6 @@ export default function Events() {
                 <div className="event-container">
                   <h3>{e.title}</h3>
                   <p>{e.desc}</p>
-                  <p>Price: {e.price}</p>
                 </div>
                 <br />
               </Card>
