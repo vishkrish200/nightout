@@ -20,7 +20,8 @@ export default function EventsDetails() {
       const response = await db
         .collection("events")
         .doc(eventId)
-        .collection("ticketTypes").orderBy('price')
+        .collection("ticketTypes")
+        .orderBy("price")
         .get();
       const ticketTypes = [];
       response.docs.forEach((ticketType) => {
@@ -30,8 +31,6 @@ export default function EventsDetails() {
     };
     fetchTicketTypes(eventId);
   }, [eventId]);
-
-  
 
   if (!event) return <h1>Loading...</h1>;
   return (
@@ -47,7 +46,9 @@ export default function EventsDetails() {
         ticketTypes.map((ticketType) => {
           return (
             <div>
-              <p>{ticketType.type}: ₹{ticketType.price}</p>
+              <p>
+                {ticketType.type}: ₹{ticketType.price}
+              </p>
             </div>
           );
         })}
